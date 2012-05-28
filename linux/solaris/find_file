@@ -1,0 +1,7 @@
+To find a file such as filename.txt anywhere on the system:
+
+find / -name filename.txt -print
+
+Recent operating system versions do not require the print option because this is the default. To limit the search to a specific directory such as /usr:
+
+find /usr -name filename.txt -print

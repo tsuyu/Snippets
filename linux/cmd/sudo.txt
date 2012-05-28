@@ -1,0 +1,27 @@
+Allowing user to run root privileged commands
+
+To allow normal user to run root privileged commands, you have to use sudo. Sudo allows a user to run commands as superuser or another user. To set your user to be able to use sudo to act as superuser, a number of steps have to be done.
+
+   1. Login as superuser(root)
+   2. Edit sudoers file using visudo
+          * # visudo
+          * Uncomment the below line and save. visudo use vi as text editor, so to save just press 'Esc' and then ':wq'
+                o %wheel ALL=(ALL) ALL
+   3. Add your user to the group wheel(You can use any name for the group as long as you add it to the sudoers file). As example, we will use 'foo' as our username
+          * # usermod -G wheel foo
+   4. To make all the superuser's environment variable available to the user, edit /home/foo/.bash_profile
+          * # vi /home/foo/.bash_profile
+          * Add the following lines, append if the line already exist.
+                o PATH=$PATH:/sbin:/usr/sbin
+                o export PATH
+          * Save the file
+          * To activate the changes, run
+                o # . .bash_profile
+   5. Now, you can use superuser environment variables, but without tab completion feature. To enable tab completion feature, edit /home/foo/.bashrc
+          * # vi /home/foo/.bashrc
+          * Add the following line
+                o complete -cf sudo
+          * Save the file
+          * To activate the changes, run
+                o # . .bashrc
+   6. Logout and login back. Now you can use sudo to execute root privileged commands, you inherited the root environment variables and you can use tab completion while using sudo

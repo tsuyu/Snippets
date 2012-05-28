@@ -1,0 +1,38 @@
+Using AJAX, you can show the server current time on client page. Time would be update on every second. Even you can set the interval of fetching time from server.
+
+For example I am showing one jsp page and servlet.
+To use this tutorial, no need to download any jar file or extra files.
+Just make one dynamic web project and use this jps and servlet file.
+
+1. ShowServerTime.jsp
+
+<html>
+<head>
+<title>Binod Java Solution AJAX </title>
+
+<script type="text/javascript">
+var request;
+function init(){
+window.setInterval("getTime()",1000);
+}
+function getTime(){
+var url = "http://localhost:8080/ServerTime/GetServerTime";
+if(window.ActiveXObject){
+request = new ActiveXObject("Microsoft.XMLHTTP");
+}
+else if(window.XMLHttpRequest){
+request = new XMLHttpRequest();
+}
+request.onreadystatechange = showTime;
+request.open("POST",url,true);
+request.send();
+}
+
+function showTime(){
+
+if(request.readyState == 4){
+var response = request.responseText;
+document.getElementById("TimeH1").innerHTML = response;
+}
+
+}

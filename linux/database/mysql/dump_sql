@@ -1,0 +1,38 @@
+Backup all databases uncompressed from the command line (not from within MySQL):
+backup: mysqldump -u root -pmypass --all-databases > alldatabases.sql
+restore full: mysql -u username -pmypass < alldatabases.sql (no space in between -p and mypass)
+restore single: mysql -u username -pmypass mydb < mydb.sql (no space in between -p and mypass)
+
+Backup all databases compressed from the command line (not from within MySQL):
+With bzip2: mysqldump --all-databases | bzip2 -c > databasebackup.sql.bz2 (use bunzip2 to uncompress)
+With gzip: mysqldump --all-databases | gzip > databasebackup.sql.gz (use gunzip to uncompress)
+
+Mini script to backup all databases and tables using gzip:
+#!/bin/sh
+date=`date -I`
+mysqldump --all-databases | gzip > /var/backup/dbbackup-$date.sql.gz
+
+
+
+-specific database only
+mysqldump -u username -pmypass databasename > backupfile.sql
+
+-database structure only
+mysqldump --no-data --databases databasename > structurebackup.sql
+
+-specific tables
+mysqldump --add-drop-table -u username -pmypass databasename table_1 table_2 > databasebackup.sql
+
+- database structure of specific databases
+mysqldump --no-data --databases db1 db2 db3 > structurebackup.sql
+
+-ignore table
+mysqldump -u username -p database --ignore-table=database.table1 --ignore-table=database.table2 > database.sql
+
+-- where condition
+mysqldump -t -u [username] -p test mytable --where="category_id = 1"
+OR
+mysqldump -t -u [username] -p test mytable -w"category_id = 1"
+
+
+tar -cf db.tar db

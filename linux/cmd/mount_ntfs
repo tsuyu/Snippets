@@ -1,0 +1,13 @@
+Suppose your ntfs filesystem is /dev/sda1 and you are going to mount it on /mymnt/win, do the following. 
+
+First, create a mount point. 
+mkdir /mymnt/win 
+
+Next, edit /etc/fstab as follows. To mount read-only: 
+/dev/sda1       /mymnt/win   ntfs-3g  ro,umask=0222,defaults 0 0 
+
+To mount read-write: 
+/dev/sda1       /mymnt/win   ntfs-3g  rw,umask=0000,defaults 0 0 
+
+You can now mount it by running: 
+mount /mymnt/win

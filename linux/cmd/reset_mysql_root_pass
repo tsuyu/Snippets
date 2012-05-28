@@ -1,0 +1,7 @@
+1. mysqld_safe --skip-grant-tables
+
+2. mysql -u root
+
+3. update user set Password=PASSWORD('new-password') where user='root';
+   flush privileges;
+   exit;

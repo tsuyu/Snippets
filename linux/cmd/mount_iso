@@ -1,0 +1,7 @@
+# mount -t iso9660 -o loop /path/to/dvd.iso  /mount/point
+
+Example:
+
+mount -t iso9660 -o loop CentOS-5.3-i386-bin-DVD.iso  /mnt/dvd
+
+This will mount the CentOS 5.3 DVD iso on /mnt/dvd directory.

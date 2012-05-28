@@ -1,0 +1,33 @@
+1. Make sure Java has been installed on the system by running:
+java --version
+
+2. Down load the current maven, apache-maven-2.0.9-bin.tar.gz, from http://maven.apache.org/download.html.
+
+3. untar the file to /usr/local/apache-maven-2.0.9, then create symbolic link:
+ln -s apache-maven-2.0.9 maven
+
+4. Append following to the end of ~/.bashrc:
+export M2_HOME=/usr/local/maven
+export PATH=${M2_HOME}/bin:${PATH}
+
+5. Bring in the environment changes:
+. ~/.bashrc
+
+6. Check the installation:
+mvn --version
+
+7. At a local you pick to create a project that will create my-app directory:
+mvn archetype:create -DgroupId=com.mycompany.app -DartifactId=my-app
+
+8. Build and test the project:
+cd my-app
+mvn package
+java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+
+If the famous "Hello World!" comes up, the package is built correctly.
+
+9. House keeping:
+mvn clean dependency:copy-dependencies package
+
+10. Create target:
+mvn site

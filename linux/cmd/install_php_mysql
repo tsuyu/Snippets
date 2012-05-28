@@ -1,0 +1,1 @@
+yum install mysql MySQL-python dovecot libdbi-dbd-mysql mysql-connector-odbc mysql-server perl-DBD-mysql php-mysql

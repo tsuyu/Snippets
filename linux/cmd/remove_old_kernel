@@ -1,0 +1,3 @@
+uname -r
+rpm -q kernel
+yum remove kernel
