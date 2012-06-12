@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<library>
+ <book>
+   <name>Head First Java, 2nd Edition</name>
+   <author>Kathy Sierra and Bert Bates</author>
+   <publication-date>09-Feb-2005</publication-date>
+ </book>
+ <book>
+   <name>Effective Java</name>
+   <author>Joshua Bloch</author>
+   <publication-date>28-May-2008</publication-date>
+ </book>
+ <book>
+   <name>Java How to Program, 7th Edition</name>
+   <author>Harvey M. Deitel and Paul J. Deitel</author>
+   <publication-date>6-Jan-2007</publication-date>
+ </book>
+</library>
