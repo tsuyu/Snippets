@@ -1,0 +1,10 @@
+
+ArrayList<Double> total_point = new ArrayList<Double>();
+double total_sum = 0.00;
+
+total_point.add(2.00);
+total_point.add(2.00);
+
+for (double v : total_point) {
+    	total_sum += v;
+}
