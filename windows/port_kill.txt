@@ -1,0 +1,2 @@
+1.netstat -ano | find "8080"
+2.taskkill /PID 8080
