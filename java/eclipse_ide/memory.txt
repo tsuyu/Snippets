@@ -1,0 +1,4 @@
+allocate memory to eclipse(run faster)
+
+1. make target shortcut
+2. D:\eclipse-jee-indigo\eclipse.exe -vm "C:\Program Files (x86)\Java\jdk1.6.0_27\bin\javaw" -vmargs -Xmx256M
