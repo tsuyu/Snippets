@@ -1,0 +1,11 @@
+* copies the structure and the data
+
+create table xyz_new as select * from xyz;
+
+* create a copy of an Oracle table without copying the data
+
+create table xyz_new as select * from xyz where 1=0;
+
+* date format
+
+DD-MON-YY HH24.MI.SS
