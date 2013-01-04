@@ -1,0 +1,66 @@
+/*check at least one item*/
+$('#deletebutton').click(function(){
+	if( $("#form_list input[type=checkbox]:checked").length > 0 ){
+		$('#form_list').attr("action","iprmgmt.jsp?action=ip_delete_form_inventors");
+		$('#form_list').submit();
+		
+	}else{
+			alert("You must select at least one item...!");
+			return false;
+	}
+});
+	
+/*check all*/
+$("#check").click(function() {
+	$("#form_list tr td input:checkbox").attr("checked", "checked");
+});
+	
+/*uncheck all*/
+$("#uncheck").click(function() {
+	$("#form_list tr td input:checkbox").removeAttr('checked');
+});
+
+$('#otherbutton').click(function(){
+		if($('#othertitle').val()=='')
+	        {
+	            alert("Please Insert Title!");
+	            return false;
+	        } 
+		else if($('#otherwhere').val()=='')
+	        {
+	            alert("Please Insert Where!");
+	            return false;
+	        } 
+		else if($('#otherdate').val()=='')
+	        {
+	            alert("Please Insert Date!");
+	            return false;
+	        } 
+		else
+			{
+			$('#form_other').attr("action","iprmgmt.jsp?action=ip_save_form1_part2&com=other&f=0");
+			$('#form_other').submit();
+			}      
+	});
+	
+if ($("#rbsearchyes").is(":checked")) {
+	$('#search_date').removeAttr('disabled');
+	$('#search_ref').removeAttr('disabled');
+	$('#search_db').removeAttr('disabled');
+}
+	
+$('#rbsearchyes').click(function(){
+   $('#search_date').attr('disabled',!this.checked);
+   $('#search_ref').attr('disabled',!this.checked);
+   $('#search_db').attr('disabled',!this.checked);
+});
+
+$('#rbsearchno').click(function(){
+   $('#search_date').val("");
+   $('#search_ref').val("");
+   $('#search_db').val("");
+   $('#search_date').attr('disabled',this.checked);
+   $('#search_ref').attr('disabled',this.checked);
+   $('#search_db').attr('disabled',this.checked);
+});
+
