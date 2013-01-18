@@ -9,3 +9,48 @@ create table xyz_new as select * from xyz where 1=0;
 * date format
 
 DD-MON-YY HH24.MI.SS
+
+* check table space size
+
+SELECT * FROM
+  (SELECT tablespace_name FROM dba_tablespaces)
+LEFT OUTER JOIN
+  (SELECT tablespace_name, SUM(bytes) AS total_bytes
+     FROM dba_data_files
+     GROUP BY tablespace_name)
+  USING (tablespace_name)
+LEFT OUTER JOIN
+  (SELECT tablespace_name, sum(bytes) AS used_bytes
+     from dba_segments
+     GROUP BY tablespace_name)
+  USING (tablespace_name)
+LEFT OUTER JOIN
+  (SELECT tablespace_name, SUM(bytes) AS free_bytes
+     FROM dba_free_space
+     GROUP BY tablespace_name)
+  USING (tablespace_name);
+
+* table space properties
+
+SELECT TABLESPACE_NAME, FILE_NAME, FILE_ID
+FROM DBA_DATA_FILES
+WHERE TABLESPACE_NAME = 'MYDATA';
+
+* drop tablespace
+
+DROP TABLESPACE <tablespace name> INCLUDING CONTENTS;
+
+* find out which accounts are expired
+select username, account_status from dba_users where ACCOUNT_STATUS LIKE '%EXPIRED%';
+
+* unexpire an account
+once an account has been expired, it can only be revived by assigning it a new password:
+ALTER USER scott IDENTIFIED BY password;
+
+* unlock an account
+ALTER USER scott ACCOUNT UNLOCK;
+
+* disable default password expiry [2]
+this all depends on the profile a user belongs to, to disable password expiry for all users assigned the default user profile do this:
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
