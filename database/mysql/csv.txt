@@ -1,0 +1,3 @@
+mysql -u username -ppassword database -e "SELECT * INTO OUTFILE '/tmp/filename.csv'  FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"'  LINES TERMINATED BY '\r\n' FROM table;"
+
+mysql -u user -p database -b "select * from table" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g' > output.csv

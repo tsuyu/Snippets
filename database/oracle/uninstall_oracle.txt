@@ -1,0 +1,9 @@
+1. Uninstall all Oracle components using the Oracle Universal Installer (OUI).
+2. Delete the HKEY_LOCAL_MACHINE/SOFTWARE/ORACLE key which contains registry entries for all Oracle products by using regedit.
+\HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ORACLE\KEY_E1Local.
+3 .Delete any references to Oracle services/components in the following registry location: HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Services/. Looks for key entries that starts with “Ora” which are obviously related to Oracle.
+4. Reboot the workstation.
+5. Delete the ORACLE_BASE directory. (i.e C:\Oracle)
+6. Delete the C:\Program Files\Oracle directory.
+7. Empty the temp directory.
+8. Empty the recycle bin.

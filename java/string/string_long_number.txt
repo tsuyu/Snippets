@@ -1,0 +1,19 @@
+1. For a normal String, you can use Long.valueOf to convert it directly.
+
+	String bigNumber = "1234567899";
+	long result = Long.valueOf(bigNumber);
+2. For a String with commas, you can use java.text.NumberFormat to convert it.
+
+	String bigNumber = "1,234,567,899";
+	NumberFormat format = NumberFormat.getInstance(Locale.US);
+        Number number = 0;
+	try {
+		number = format.parse(bigNumber);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	long result = number.longValue();
+3. Alternatively, if you don’t care about Locale, just replace all the commas.
+
+	String bigNumber = "1,234,567,899";
+	long result3 = Long.valueOf(bigNumber.replaceAll(",", "").toString());

@@ -1,0 +1,9 @@
+SELECT host,lower_port,upper_port,acl,DECODE(DBMS_NETWORK_ACL_ADMIN.check_privilege_aclid(aclid, 'HOWARD', 'connect'),
+1, 'GRANTED', 0, 'DENIED', null) PRIVILEGE FROM dba_network_acls
+WHERE host IN (SELECT * FROM TABLE(DBMS_NETWORK_ACL_UTILITY.domains('your smtp server.com')))
+ORDER BY DBMS_NETWORK_ACL_UTILITY.domain_level(host) desc, lower_port, upper_port;
+
+SELECT acl,principal,privilege,is_grant,TO_CHAR(start_date, 'DD-MON-YYYY') AS start_date,TO_CHAR(end_date, 'DD-MON-YYYY') AS end_date
+FROM dba_network_acl_privileges;
+
+select host, lower_port, upper_port, acl,DBMS_NETWORK_ACL_ADMIN.CHECK_PRIVILEGE_ACLID(aclid,null,'connect') GRANTED from dba_network_acls;

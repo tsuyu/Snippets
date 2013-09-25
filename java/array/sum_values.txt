@@ -8,3 +8,81 @@ total_point.add(2.00);
 for (double v : total_point) {
     	total_sum += v;
 }
+
+
+/**
+* Generate N random numbers when their SUM is known
+*/
+import java.util.Arrays;
+import java.util.Random;
+
+/**
+ * @author Deepak Azad
+ */
+
+public class RandomNumberGenerator {
+
+    public int[] genNumbers(int n, int sum){
+        int[] nums = new int[n];
+        int upperbound = Long.valueOf(Math.round(sum*1.0/n)).intValue();
+        int offset = Long.valueOf(Math.round(0.5*upperbound)).intValue();
+       
+        int cursum = 0;
+        Random random = new Random(new Random().nextInt());
+        for(int i=0 ; i < n ; i++){
+            int rand = random.nextInt(upperbound) + offset;
+            if( cursum + rand > sum || i == n - 1) {
+                rand = sum - cursum;
+            }
+            cursum += rand;
+            nums[i]=rand;
+            if(cursum == sum){
+                break;
+            }
+        }
+        return nums;
+    }
+   
+    public static void main(String[] args) {
+        RandomNumberGenerator generator = new  RandomNumberGenerator();
+        System.out.println(Arrays.toString(generator.genNumbers(5,50)));
+    }
+}
+/**
+* Generate N random numbers when their SUM is known
+*/
+import java.util.Arrays;
+import java.util.Random;
+
+/**
+ * @author Deepak Azad
+ */
+
+public class RandomNumberGenerator {
+
+    public int[] genNumbers(int n, int sum){
+        int[] nums = new int[n];
+        int upperbound = Long.valueOf(Math.round(sum*1.0/n)).intValue();
+        int offset = Long.valueOf(Math.round(0.5*upperbound)).intValue();
+       
+        int cursum = 0;
+        Random random = new Random(new Random().nextInt());
+        for(int i=0 ; i < n ; i++){
+            int rand = random.nextInt(upperbound) + offset;
+            if( cursum + rand > sum || i == n - 1) {
+                rand = sum - cursum;
+            }
+            cursum += rand;
+            nums[i]=rand;
+            if(cursum == sum){
+                break;
+            }
+        }
+        return nums;
+    }
+   
+    public static void main(String[] args) {
+        RandomNumberGenerator generator = new  RandomNumberGenerator();
+        System.out.println(Arrays.toString(generator.genNumbers(5,50)));
+    }
+}

@@ -1,0 +1,58 @@
+[Oracle] Resetting a sequence
+
+
+To reset a sequence SEQ created through the command:
+CREATE SEQUENCE seq; 
+Search for its current value via the command:
+SEQ.CURRVAL SELECT FROM DUAL; 
+Then change the sequence by adding the option by adding increment value VAL(current value - 1) to reset the sequence to 1:
+ALTER SEQUENCE SEQ INCREMENT by -VAL; 
+Then run the command that will reset the sequence:
+SEQ.NEXTVAL SELECT FROM DUAL; 
+To restore the increment of the sequence:
+ALTER SEQUENCE SEQ INCREMENT by 1; 
+
+
+
+Example: 
+
+SQL> create sequence seq;   
+
+Sequence created.   
+
+SQL> select seq.nextval from dual;   
+
+   NEXTVAL  
+----------  
+         1  
+
+SQL> select seq.nextval from dual;  
+
+   NEXTVAL  
+----------  
+         2  
+
+SQL> select seq.nextval from dual;  
+
+   NEXTVAL  
+----------  
+         3  
+
+SQL> select seq.currval from dual;   
+
+    CURRVAL   
+----------   
+          3   
+SQL> alter sequence seq increment by -2;  // 2=SEQ.CURRVAL-1  
+
+Sequence altered.   
+
+SQL> select seq.nextval from dual;   
+
+    NEXTVAL  
+----------   
+          1   
+
+SQL> alter sequence seq increment by 1;   
+
+Sequence altered.

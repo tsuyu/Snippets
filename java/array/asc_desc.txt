@@ -1,0 +1,25 @@
+    public void testSortAsc() throws Exception {
+        String[] data = {
+                "Autumn", "Spring", "Summer", "Winter"
+        };
+ 
+        // sort ascending
+        Arrays.sort(data);
+        System.out.println(Arrays.toString(data));
+    }
+	
+	 public void testSortDesc() throws Exception {
+        String[] data = {
+               "Autumn", "Spring", "Summer", "Winter"
+        };
+ 
+        // sort descending
+        Arrays.sort(data, new Comparator<String>() {
+ 
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        });
+        System.out.println(Arrays.toString(data));
+    }

@@ -1,0 +1,7 @@
+Oracle form Controls Tab Index Issue
+
+In the forms, under Data Blocks ---> <datablock_name> ---> Items all the items will be listed.
+
+Change the order of those items as per your required tab order (First item on top). Then when you run the form it will be OK.
+
+Or else you can set the properties PREVIOUS NAVIGATION ITEM, NEXT NAVIGATION ITEM of each item for the tab order.

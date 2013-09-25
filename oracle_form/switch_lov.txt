@@ -1,0 +1,14 @@
+Switch Oracle Forms List of Values on and off dynamically at run time
+
+In e.g. post-query block level trigger:
+
+IF block.check_field = 'F'
+THEN
+   -- switch on
+   Set_Item_Property( 'block.field' , LOV_NAME, 'your lov') ;
+   Set_Item_Property( 'block.field', VALIDATE_FROM_LIST, PROPERTY_TRUE);
+ELSE
+   -- switch off
+   Set_Item_Property( 'block.field' , LOV_NAME, '') ;
+   Set_Item_Property( 'block.field', VALIDATE_FROM_LIST, PROPERTY_FALSE);
+END IF ;
