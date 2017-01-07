@@ -1,0 +1,12 @@
+function F_13FormatTrigger return boolean is
+page_num number;
+a number(3);
+begin
+	srw.get_page_num (page_num);
+ 	a:= page_num;
+ 	if a > 1 then
+  return (FALSE);
+ 	else
+ 	return (TRUE);	
+  end if;
+end;
