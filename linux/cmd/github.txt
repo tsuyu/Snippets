@@ -1,0 +1,43 @@
+#clone git repo
+git clone https://github.com/tsuyu/.git
+
+#change branch
+git checkout <branch>
+
+#add file to commit
+git add *
+
+#commit file
+git commit -m "hahaha"
+
+#push committed file to server
+git push origin <branch>
+
+#list all uncommited file
+git ls-files --other --ignored --exclude-standard
+
+#list all of commited file
+git ls-tree --name-only -r <branch>
+
+#update local repo branch master
+git pull origin master
+
+#last commit
+git log -n 1 --all
+
+#merge git branch on local
+git checkout master
+git pull origin master
+git merge test
+git push origin master
+
+#create a new repository on the command line
+echo "# MyAccount" >> README.md
+git init
+git commit -m "setup commit"
+git remote add origin https://github.com/tsuyu/MyAccount.git
+git push -u origin master
+
+#push an existing repository from the command line
+git remote add origin https://github.com/tsuyu/fms.git
+git push -u origin master
