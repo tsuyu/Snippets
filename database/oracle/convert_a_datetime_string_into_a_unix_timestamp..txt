@@ -1,0 +1,20 @@
+CREATE OR REPLACE FUNCTION CMSADMIN.GETTIMESTAMP ( p_str IN VARCHAR2 ) RETURN NUMBER IS
+
+lv_refno                varchar2(20) := null;
+
+CURSOR c_gettimestamp ( p_str IN VARCHAR2 )IS
+select extract(day from(timestamp_from_string-to_timestamp('1970-01-01','YYYY-MM-DD')))*86400000 +to_number(to_char(timestamp_from_string,'SSSSSFF3')) from_date_string
+from (select FROM_TZ(to_timestamp(date_string,'YYYY-MM-DD HH24:MI:SS.FF3'),my_tz_string) AT TIME ZONE 'UTC' timestamp_from_string
+from(select p_str date_string,1392372931619 unix_time,'+08:00' my_tz_string from dual));
+
+    
+BEGIN
+
+   OPEN c_gettimestamp(p_str);
+   FETCH c_gettimestamp INTO lv_refno;
+   CLOSE c_gettimestamp;
+      
+   RETURN lv_refno;
+   
+END;
+/
