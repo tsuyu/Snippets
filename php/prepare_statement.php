@@ -6,7 +6,7 @@ Before we start, let’s connect to the database.
 
 $mysqli = new mysqli( 'hostname', 'username', 'password', 'database' );
 
-1. SELECT - Selecting one row
+//1. SELECT - Selecting one row
 $stmt = $mysqli -> prepare('SELECT name, email FROM users WHERE id = ?'); 
 $userId = 1;
 $stmt -> bind_param('i', $userId); 
@@ -18,7 +18,7 @@ $stmt -> fetch();
 echo $name;
 echo $email;
 
-2. SELECT - Selecting Multiple Rows
+//2. SELECT - Selecting Multiple Rows
 $stmt = $mysqli -> prepare('SELECT name, email FROM users'); 
 $stmt -> execute(); 
 $stmt -> store_result(); 
@@ -27,20 +27,23 @@ while ($stmt -> fetch()) {
     echo $name; 
     echo $email; 
 }
-3. SELECT - Getting Number of Selected Rows
+
+//3. SELECT - Getting Number of Selected Rows
 $stmt = $mysqli -> prepare('SELECT name, email FROM users');
 
 $stmt -> execute();
 $stmt -> store_result();
 
 echo $stmt -> num_rows;
-4. SELECT - Get Results
+
+//4. SELECT - Get Results
 $stmt = $mysqli -> prepare('SELECT name, email FROM users WHERE id > ?');
 $greaterThan = 1;
 $stmt -> bind_param('i', $greaterThan);
 $stmt -> execute();
 $result = $stmt -> get_result();
-5. SELECT - With Wildcards
+
+//5. SELECT - With Wildcards
 $stmt = $mysqli -> prepare('SELECT name, email FROM users WHERE name LIKE ?');
 
 $like = 'a%';
@@ -53,7 +56,8 @@ while ($stmt -> fetch()) {
 	echo $name;
 	echo $email;
 }
-6. SELECT - With An Array of IDs
+
+//6. SELECT - With An Array of IDs
 // array of user IDs
 $userIdArray = [1,2,3,4];
 // number of question marks
@@ -76,7 +80,8 @@ while ($stmt -> fetch()) {
 	echo $name;
 	echo $email;
 }
-7. SELECT - LIMIT and OFFSET
+
+//7. SELECT - LIMIT and OFFSET
 $stmt = $mysqli -> prepare("SELECT name, email FROM users LIMIT ? OFFSET ?");
 
 // limit of rows
@@ -93,7 +98,8 @@ while ($stmt -> fetch()) {
 	echo $name;
 	echo $email;
 }
-8. SELECT - BETWEEN
+
+//8. SELECT - BETWEEN
 $stmt = $mysqli -> prepare("SELECT name, email FROM users WHERE id BETWEEN ? AND ?");
 
 $betweenStart = 2;
@@ -108,7 +114,8 @@ while ($stmt -> fetch()) {
 	echo $name;
 	echo $email;
 }
-9. INSERT - One Row
+
+//9. INSERT - One Row
 $stmt = $mysqli -> prepare('INSERT INTO users (name, email) VALUES (?,?)');
 
 $name = 'John';
@@ -116,7 +123,8 @@ $email = 'john@gmail.com';
 
 $stmt -> bind_param('ss', $name, $email);
 $stmt -> execute();
-10. INSERT - Getting Insert ID
+
+//10. INSERT - Getting Insert ID
 $stmt = $mysqli -> prepare('INSERT INTO users (name, email) VALUES (?,?)');
 
 $name = 'John';
@@ -126,7 +134,8 @@ $stmt -> bind_param('ss', $name, $email);
 $stmt -> execute();
 
 echo 'Your account id is ' . $stmt -> insert_id;
-11. INSERT - Multiple Rows (Recursive)
+
+//11. INSERT - Multiple Rows (Recursive)
 $newUsers = [
 	[ 'sulliops', 'sulliops@gmail.com' ],
 	[ 'infinity', 'infinity@gmail.com' ],
@@ -146,7 +155,8 @@ foreach ($newUsers as $user) {
 	echo "{$name}'s account id is {$stmt -> insert_id}";
 
 }
-12. UPDATE
+
+//12. UPDATE
 $stmt = $mysqli -> prepare('UPDATE users SET email = ? WHERE id = ? LIMIT 1');
 	
 $email = 'newemail@hyvor.com';
@@ -154,7 +164,8 @@ $id = 2;
 
 $stmt -> bind_param('si', $email, $id);
 $stmt -> execute();
-13. UPDATE - Get Affected Rows
+
+//13. UPDATE - Get Affected Rows
 $stmt = $mysqli -> prepare('UPDATE users SET email = ? WHERE name = ? LIMIT 1');
 	
 $email = 'newemail@hyvor.com';
@@ -165,7 +176,8 @@ $stmt -> execute();
 
 // 1
 echo $stmt -> affected_rows;
-14. DELETE
+
+//14. DELETE
 $stmt = $mysqli -> prepare('DELETE FROM users WHERE id = ?');
 	
 $userId = 4;
